@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rent Receipt</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900&display=swap"
+    rel="stylesheet">
+
+    <!-- Material icons -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&"/>  
+</head>
+
+<body>
+  <main class="layout">
+    <section class="form-section">
+      <div class="form-container">
+        <h1>Generate Rent Receipt</h1>
+
+        <!-- Form section -->
+        <form>
+          <!---------------------------------- Section 1 ---------------------------------->
+          <h3>Contracted Parties</h3>
+          <div class="grid-section">
+            <div>
+              <label for="propertyOwner">Property Owner</label>
+              <input type="text" id="propertyOwner" name="propertyOwner" placeholder="Full name" required maxlength="50">
+            </div>
+
+            <div>
+              <label for="propertyOwnerContact">Contact</label>
+              <input type="tel" id="propertyOwnerContact" name="propertyOwnerContact" placeholder="000-000-0000" required maxlength="15">
+            </div>
+
+            <div>
+              <label for="lessorName">Lessor</label>
+              <input type="text" id="lessorName" name="lessorName" placeholder="Full Name" required maxlength="50">
+            </div>
+
+            <div>
+              <label for="lessorContact">Contact</label>
+              <input type="tel" id="lessorContact" name="lessorContact" placeholder="000-000-0000" required maxlength="15">
+            </div>
+          </div>
+
+          <!---------------------------------- Section 2 ---------------------------------->
+          <h3>Contracted Property</h3>
+          <div class="grid-section">
+            <div>
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" placeholder="Full Address" required maxlength="100">
+            </div>
+
+            <div>
+              <label for="propertyType">Property Type</label>
+              <select id="propertyType" name="propertyType" required>
+                <option value="select">--Select--</option>
+                <option value="residential">Residential</option>
+                <option value="commercial">Commercial</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="unit">Unit</label>
+              <input type="text" id="unit" name="unit" placeholder="If applicable" maxlength="10">
+            </div>
+
+            <div>
+              <label for="contractedDate">Date Leased</label>
+              <input type="date" id="contractedDate" name="contractedDate" required>
+            </div>
+          </div>
+
+          <!---------------------------------- Section 3 ---------------------------------->
+          <h3>Payment and Contract Agreement</h3>
+          <div class="grid-section">
+            <div>
+              <label for="contractFrom">Contracted From</label>
+              <input type="date" id="contractFrom" name="contractFrom" required>
+            </div>
+
+            <div>
+              <label for="contractTo">Contracted To</label>
+              <input type="date" id="contractTo" name="contractTo" required>
+            </div>
+
+            <div>
+              <label for="paymentMethod">Payment Method</label>
+              <select id="paymentMethod" name="paymentMethod" required>
+                <option value="select">--Select--</option>
+                <option value="online">Online</option>
+                <option value="office">Office</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="payment-amount">Payment Amount $</label>
+              <input type="number" id="paymentAmount" name="paymentAmount" required  placeholder="0.00" min="0" step="0.01">
+            </div>
+            <div>
+              <label for="receipt">Receipt ID</label>
+              <input type="text" id="receipt" name="receipt" required maxlength="10">
+            </div>
+          </div>
+          
+
+          <!---------------------------------- Section Comment ---------------------------------->
+          <div class="comment">
+            <label for="comment">Comments</label><br>
+            <textarea id="comment" name="comment" placeholder="300 characters or less" maxlength="300"></textarea>
+          </div>
+
+          <!---------------------------------- Section Buttons ---------------------------------->
+          <div class="button-container">
+            <button type="submit" id="generateInvoice">Generate Invoice <span class="material-symbols-outlined">build</span></button>
+            <button type="button" id="print">Print <span class="material-symbols-outlined">print</span></button>
+            <button type="button" id="download">Download <span class="material-symbols-outlined">download_2</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!--------------------------------- RECEIPT ----------------------------->
+     
+    <aside class="receipt-wrap">
+      <div class="receipt">
+        <header>
+          <h2>Rent Receipt</h2>
+          <div class="meta">
+            <div>Receipt ID: <strong id="rpt-id">RCPT-XXXX</strong></div>
+            <div>Date: <strong id="rpt-date">—</strong></div>
+          </div>
+        </header>
+
+        <div class="two-col">
+  <div>
+    <dl>
+      <dt>From (Owner)</dt>
+      <dd id="rpt-owner">Jane Doe</dd>
+
+      <dt>Lessor / Tenant</dt>
+      <dd id="rpt-lessor">John Smith</dd>
+
+      <dt>Address</dt>
+      <dd id="rpt-address">123 Main St, Kingston</dd>
+    </dl>
+  </div>
+
+  <div class="right-col">
+    <dl>
+      <dt>Payment Method</dt>
+      <dd>Online</dd>
+      <dt>Contract Period</dt>
+      <dd>01/01/2025 — 12/31/2025</dd>
+    </dl>
+    <div class="amount">Amount Paid: <span id="rpt-amount">JMD 0.00</span></div>
+  </div>
+</div>
+
+        <div class="line"></div>
+        <footer class="note">Property manager • Minimal printable receipt • Keep this for your records</footer>
+      </div>
+    </aside>
+    
+  </main>
+<script src="./script.js"></script>
+  
+</html>
+
+
+    
+  

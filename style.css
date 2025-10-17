@@ -1,0 +1,272 @@
+:root {/* CSS Variables */
+  /* Fonts */
+  --primary-font: "Google Sans Code", monospace;
+  --secondary-font: "Source Serif 4", serif;
+
+  /* Colors */
+  --primary-color: #ffffff;
+  --secondary-color: #000000;
+  --muted:#666;
+
+  /* Font sizes */
+  --h1-font-size: 1.5rem;
+  --h3-font-size: 1rem;
+  --label-font-size: 0.875rem;
+}
+/*======Global styles====*/
+body {
+  margin: 0;
+  font-family: var(--secondary-font);
+  background: linear-gradient(-20deg, var(--secondary-color), var(--primary-color));
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.layout {
+  display: flex;
+  justify-content: center;      /* Centers the pair in the page */
+  align-items: flex-start;      /* Aligns both to the top */
+  gap: 40px;                    /* Controls the space between them */
+  padding: 40px 20px;           /* Adds breathing room around */
+  flex-wrap: wrap;              /* Makes them stack on small screens */
+}
+/*==============Form style=============*/
+.form-section {
+  flex: 2;
+  min-width: 400px;
+}
+.form-container {/* Form container */
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  width: 80%;
+  max-width: 900px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+h1 {/* Form title */
+  font-family: var(--primary-font);
+  font-size: var(--h1-font-size);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+h3 {/* Section titles */
+  font-family: var(--primary-font);
+  font-size: var(--h3-font-size);
+  margin: 15px 0 10px;
+}
+
+form {/* Form layout */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {/* Form labels */
+  font-size: var(--label-font-size);
+  margin-bottom: 5px;
+}
+
+.grid-section {/* Grid layout for form sections */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.grid-section div {/* Individual grid items */
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+select,
+textarea {/* Form inputs */
+  padding: 8px;
+  font-size: 0.9rem;
+  border: none;
+  border-bottom: 1px solid var(--secondary-color);
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+input:hover,
+select:hover,
+textarea:hover {/* Hover effect for inputs */
+  border-bottom: 1px solid var(--muted);
+}
+
+input:focus::placeholder {/* Placeholder fade on focus */
+  color: transparent;
+}
+
+textarea {/* Textarea specific styles */
+  resize: none;
+  height: 50px;
+}
+
+.button-container {/* Button container */
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.button-container button {/* Buttons */
+  color: var(--card-color);
+  background: linear-gradient(20deg, var(--secondary-color), var(--primary-color));
+  border: none;
+  font-size: var(--label-font-size);
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.button-container button:hover {/* Button hover effect */
+  background: linear-gradient(20deg, var(--primary-color), var(--secondary-color));
+  cursor: pointer;
+}
+.material-symbols-outlined {
+  vertical-align: middle;   /* Aligns icon with text */
+  font-size: 1.2em;     
+  color:#000000;    
+}
+
+/*==================Recipt=======*/
+
+.receipt-wrap {/* Receipt container */
+  flex: 1; /* Take available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh;
+  min-width: 300px;
+  max-width: 380px;
+  padding-right:3.75rem;
+}
+
+.receipt {/* Receipt card */
+  background: var(--primary-color);
+  border: 1px dashed var(--muted);
+  border-radius: 6px;
+  padding: 20px;
+  font-family: "Courier New", monospace;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.5s ease-out forwards;
+
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;              /* starts invisible */
+    transform: translateY(10px); /* slightly below its final position */
+  }
+  to {
+    opacity: 1;              /* ends visible */
+    transform: translateY(0); /* moves into place */
+  }
+}
+
+
+.receipt header {/* Receipt header */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.receipt h2 {/* Receipt title */
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.meta {/* Receipt meta info */
+  font-size: 0.85rem;
+  text-align: right;
+  color: var(--muted);
+}
+
+.two-col {/* Two-column layout */
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 0.9rem;
+}
+
+dl { margin: 0; }/* Description list reset */
+dt { font-size: 0.75rem; color: var(--muted); }/* Term style */
+dd { margin: 0 0 8px 0; font-weight: 600; }/* Description style */
+
+.amount {/* Amount section */
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.line {/* Separator line */
+  border-top: 1px dashed var(--muted);
+  margin: 15px 0;
+}
+
+footer.note {/* Receipt footer note */
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Small screens up to 600px */
+@media (max-width: 600px) {/* Mobile styles */
+  .form-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button-container button {
+    width: 100%;
+  }
+}
+/* Medium screens up to 950px */
+@media (max-width: 950px) {/* Tablet styles */
+  .layout {
+    flex-direction: column;
+    align-items: center;
+  }
+.form-section,
+  .receipt-wrap {
+    width: 90%;
+  }  
+  .form-container {
+    width: 90%;
+  }
+
+  .grid-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
